@@ -1,0 +1,30 @@
+# Variables
+
+### Get discounted orders
+GET https://localhost:5001/api/discounted-orders
+content-type: application/json
+
+### Get subscription
+GET https://localhost:5001/api/subscriptions/
+content-type: application/json
+
+### Subscribe to newsletter ###
+POST https://localhost:5001/api/subscriptions
+content-type: application/json
+
+{
+    "Email": "test3@test.test"
+}
+
+### Get orders
+GET https://localhost:5001/api/orders/
+content-type: application/json
+
+### Subscribe to newsletter ###
+POST https://localhost:5001/api/orders
+content-type: application/json
+
+{
+    "Value": 100,
+    "DiscountCode": "e11a04fff487482c86943c3504abd46b"
+}
