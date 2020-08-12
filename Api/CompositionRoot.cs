@@ -62,7 +62,6 @@ namespace Api
             serviceCollection.AddScoped<IValueCalculator, ValueCalculator>();
             serviceCollection.AddScoped<IEmailService, EmptyMailingService>();
             serviceCollection.AddScoped<IDiscountCodeGenerator, DiscountCodeGenerator>();
-            serviceCollection.AddScoped<IOrderProcess, OrderProcess>();
         }
     }
 }

@@ -13,9 +13,7 @@ namespace Infrastructure.EntityMappings
             builder.ToTable("Discounts");
 
             builder.HasKey(x => x.Id);
-
-            builder.Property(x => x.Code).HasField("_code");
-            //builder.Property<string>("_code").HasColumnName("Code");
+            builder.Property(x => x.Code);
             builder.Property<Guid?>("_subscriberId").HasColumnName("SubscriberId").IsRequired(false);
         }
     }

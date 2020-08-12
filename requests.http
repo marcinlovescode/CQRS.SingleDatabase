@@ -5,7 +5,7 @@ GET https://localhost:5001/api/discounted-orders
 content-type: application/json
 
 ### Get subscription
-GET https://localhost:5001/api/subscriptions/
+GET https://localhost:5001/api/subscriptions/163c709d-e5e1-4517-a171-d95791f187bc
 content-type: application/json
 
 ### Subscribe to newsletter ###
@@ -13,11 +13,11 @@ POST https://localhost:5001/api/subscriptions
 content-type: application/json
 
 {
-    "Email": "test3@test.test"
+    "Email": "test11@test.test"
 }
 
 ### Get orders
-GET https://localhost:5001/api/orders/
+GET https://localhost:5001/api/orders/3f6bdf2f-129d-41d8-b87a-89937ac6c6eb
 content-type: application/json
 
 ### Subscribe to newsletter ###
@@ -26,5 +26,5 @@ content-type: application/json
 
 {
     "Value": 100,
-    "DiscountCode": "e11a04fff487482c86943c3504abd46b"
+    "DiscountCode": "8b9f2c59ceac49d9b1ed026d8f710632"
 }

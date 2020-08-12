@@ -12,14 +12,14 @@ namespace Application.Orders.CommandHandlers
     public class PlaceOrderHandler : ICommandHandler<PlaceOrder>
     {
         private readonly IDiscountRepository _discountRepository;
-        private readonly IOrderProcess _orderProcess;
         private readonly IOrderRepository _orderRepository;
+        private readonly IValueCalculator _valueCalculator;
 
-        public PlaceOrderHandler(IDiscountRepository discountRepository, IOrderRepository orderRepository, IOrderProcess orderProcess)
+        public PlaceOrderHandler(IDiscountRepository discountRepository, IOrderRepository orderRepository, IValueCalculator valueCalculator)
         {
             _discountRepository = discountRepository;
             _orderRepository = orderRepository;
-            _orderProcess = orderProcess;
+            _valueCalculator = valueCalculator;
         }
 
         public async Task HandleAsync(PlaceOrder command, CancellationToken cancellationToken = default)
@@ -35,13 +35,13 @@ namespace Application.Orders.CommandHandlers
             var discount = await _discountRepository.FindByCode(command.DiscountCode, cancellationToken);
             if (discount == null)
                 throw new InvalidOperationException($"Couldn't find discount of following code: {command.DiscountCode}");
-            var order = _orderProcess.PlaceOrder(command.Id, command.Value, discount);
+            var order = Order.PlaceDiscountedOrder(command.Id, command.Value, discount, _valueCalculator);
             await _orderRepository.Add(order, cancellationToken);
         }
 
         private async Task HandleOrder(PlaceOrder command, CancellationToken cancellationToken)
         {
-            var order = _orderProcess.PlaceOrder(command.Id, command.Value);
+            var order = Order.PlaceOrder(command.Id, command.Value);
             await _orderRepository.Add(order, cancellationToken);
         }
     }

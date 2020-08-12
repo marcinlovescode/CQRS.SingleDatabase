@@ -16,7 +16,7 @@ namespace Application.Tests.Unit.Orders.CommandHandlers
     {
         private Mock<IDiscountRepository> _discountRepositoryMock;
         private Mock<IIdentityProvider> _identityProviderMock;
-        private IOrderProcess _orderProcess;
+        private IValueCalculator _valueCalculator;
         private Mock<IOrderRepository> _orderRepositoryMock;
 
         private PlaceOrderHandler _sut;
@@ -34,8 +34,8 @@ namespace Application.Tests.Unit.Orders.CommandHandlers
                 .Returns<decimal, Discount>(CalculateDiscount);
             _orderRepositoryMock = new Mock<IOrderRepository>();
             _discountRepositoryMock = new Mock<IDiscountRepository>();
-            _orderProcess = new OrderProcess(_valueCalculatorMock.Object);
-            _sut = new PlaceOrderHandler(_discountRepositoryMock.Object, _orderRepositoryMock.Object, _orderProcess);
+            _valueCalculator = new ValueCalculator();
+            _sut = new PlaceOrderHandler(_discountRepositoryMock.Object, _orderRepositoryMock.Object, _valueCalculator);
         }
 
         [Test]

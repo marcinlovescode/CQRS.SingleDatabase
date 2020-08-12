@@ -12,8 +12,7 @@ namespace Infrastructure.EntityMappings
             builder.ToTable("Subscribers");
 
             builder.HasKey(x => x.Id);
-
-            builder.Property<string>("_email").HasColumnName("Email");
+            builder.Property(x => x.Email);
         }
     }
 }
